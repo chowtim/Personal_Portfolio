@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Private source files. The CV includes a home address.
+/input
+*.pdf
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

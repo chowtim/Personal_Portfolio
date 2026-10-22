@@ -20,7 +20,7 @@ export function Hero() {
     <section id="top" className="relative isolate overflow-hidden">
       <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
       <motion.div
-        className="relative mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-[1120px] items-center gap-10 px-6 py-20 lg:grid-cols-[minmax(0,1fr)_280px]"
+        className="relative mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-[1120px] items-center gap-10 px-6 py-20 lg:grid-cols-[minmax(0,1fr)_360px]"
         initial="hidden"
         animate="show"
         variants={{
@@ -79,13 +79,13 @@ export function Hero() {
 
         <motion.div variants={fade} className="hero-enter order-1 justify-self-center lg:order-2 lg:justify-self-end">
           <Image
-            src="/profile.jpg"
+            src="/portrait.png"
             alt={`Portrait of ${profile.name}`}
-            width={640}
-            height={640}
+            width={397}
+            height={400}
             priority
-            sizes="(min-width: 1024px) 280px, 224px"
-            className="aspect-square w-44 rounded-2xl object-cover ring-1 ring-line sm:w-56 lg:w-[280px]"
+            sizes="(min-width: 1024px) 340px, 256px"
+            className="w-56 sm:w-64 lg:w-[340px] h-auto"
           />
         </motion.div>
       </motion.div>

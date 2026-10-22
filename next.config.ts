@@ -1,9 +1,13 @@
 import type { NextConfig } from "next";
 
+const basePath = process.env.GITHUB_PAGES === "1" ? "/Personal_Portfolio" : "";
+
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  output: "export",
+  basePath,
+  images: {
+    unoptimized: true,
+  },
   turbopack: {
     rules: {
       "*.css": {
