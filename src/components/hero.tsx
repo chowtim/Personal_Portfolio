@@ -79,7 +79,7 @@ export function Hero() {
 
         <motion.div variants={fade} className="hero-enter order-1 justify-self-center lg:order-2 lg:justify-self-end">
           <Image
-            src="/portrait.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/portrait.png`}
             alt={`Portrait of ${profile.name}`}
             width={397}
             height={400}
