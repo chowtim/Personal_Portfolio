@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/*
+  Palette — change these to restyle the site.
+  background #0a0a0a · surface #141414 · raised #1c1c1c
+  text #f4f4f5 · muted #a1a1aa · stone #a8a29e · accent #3b82f6
+*/
+:root {
+  --background: #0a0a0a;
+  --foreground: #f4f4f5;
+  --muted: #a1a1aa;
+  --surface: #141414;
+  --raised: #1c1c1c;
+  --line: #2a2a2a;
+  --accent: #3b82f6;
+  --stone: #a8a29e;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-stone: var(--stone);
+  --font-sans: var(--font-inter), "PingFang HK", "Microsoft JhengHei", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* Keyboard focus, kept visible on the dark background. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.hero-glow {
+  background:
+    radial-gradient(ellipse 70% 45% at 50% -10%, rgb(59 130 246 / 0.22), transparent 55%),
+    radial-gradient(ellipse 40% 30% at 100% 0%, rgb(59 130 246 / 0.08), transparent 50%);
+}
+
+/* Framer writes inline transforms. !important keeps reduced-motion users still. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
