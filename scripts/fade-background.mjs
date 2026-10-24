@@ -132,11 +132,11 @@ for (let i = 0; i < count; i++) {
   }
 
   // Bake the fade onto the page color. A transparent edge resizes into a white line.
-  const page = 10;
+  const page = [239, 234, 226];
   const alpha = rgba[out + 3] / 255;
-  rgba[out] = Math.round(rgba[out] * alpha + page * (1 - alpha));
-  rgba[out + 1] = Math.round(rgba[out + 1] * alpha + page * (1 - alpha));
-  rgba[out + 2] = Math.round(rgba[out + 2] * alpha + page * (1 - alpha));
+  rgba[out] = Math.round(rgba[out] * alpha + page[0] * (1 - alpha));
+  rgba[out + 1] = Math.round(rgba[out + 1] * alpha + page[1] * (1 - alpha));
+  rgba[out + 2] = Math.round(rgba[out + 2] * alpha + page[2] * (1 - alpha));
   rgba[out + 3] = 255;
 }
 

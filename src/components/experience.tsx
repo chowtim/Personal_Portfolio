@@ -3,35 +3,46 @@ import { Section } from "@/components/section";
 
 export function Experience() {
   return (
-    <Section id="experience" eyebrow="02" title="Experience">
-      <ol className="space-y-6">
+    <Section id="experience" className="bg-surface">
+      <h2 className="font-serif text-5xl font-medium tracking-tight">Experience</h2>
+      <ol className="mt-12">
         {experience.map((role) => (
-          <li key={`${role.organization}-${role.period}`}>
-            <article className="rounded-2xl border border-line bg-surface p-6 sm:p-8">
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                <h3 className="text-xl font-medium tracking-tight">{role.title}</h3>
-                <p className="text-sm text-stone">{role.period}</p>
-              </div>
+          <li
+            key={`${role.organization}-${role.period}`}
+            className="grid gap-3 border-t border-line py-10 md:grid-cols-[11rem_minmax(0,1fr)] md:gap-10"
+          >
+            <p className="text-sm text-stone md:pt-2">{role.period}</p>
+            <article className="max-w-[68ch]">
+              <h3 className="font-serif text-3xl font-medium tracking-tight">{role.title}</h3>
               <p className="mt-1 text-accent">{role.organization}</p>
-              <ul className="mt-5 space-y-3 text-muted">
-                {role.points.map((point) => (
-                  <li key={point} className="flex gap-3">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-              {role.groups?.map((group) => (
-                <div key={group.title} className="mt-6 border-t border-line pt-6">
-                  <h4 className="text-base font-medium text-foreground">{group.title}</h4>
-                  <ul className="mt-3 space-y-3 text-muted">
-                    {group.points.map((point) => (
-                      <li key={point} className="flex gap-3">
-                        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-stone" aria-hidden="true" />
-                        <span>{point}</span>
-                      </li>
+
+              {role.projects?.map((project) => (
+                <div key={project.title} className="mt-8">
+                  <h4 className="font-serif text-2xl">{project.title}</h4>
+                  <div className="mt-3 space-y-3 leading-relaxed text-muted">
+                    {project.points.map((point) => (
+                      <p key={point}>{point}</p>
                     ))}
-                  </ul>
+                  </div>
+                </div>
+              ))}
+
+              {role.points.length > 0 && (
+                <div className="mt-8 space-y-3 leading-relaxed text-muted">
+                  {role.points.map((point) => (
+                    <p key={point}>{point}</p>
+                  ))}
+                </div>
+              )}
+
+              {role.groups?.map((group) => (
+                <div key={group.title} className="mt-8">
+                  <h4 className="font-serif text-2xl">{group.title}</h4>
+                  <div className="mt-3 space-y-3 leading-relaxed text-muted">
+                    {group.points.map((point) => (
+                      <p key={point}>{point}</p>
+                    ))}
+                  </div>
                 </div>
               ))}
             </article>

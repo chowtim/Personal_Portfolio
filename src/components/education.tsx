@@ -3,31 +3,33 @@ import { Section } from "@/components/section";
 
 export function Education() {
   return (
-    <Section id="education" eyebrow="04" title="Education">
-      <ol className="space-y-6">
+    <Section id="education" className="border-t border-line bg-raised/50">
+      <h2 className="font-serif text-5xl font-medium tracking-tight">Education</h2>
+      <ol className="mt-10 grid gap-8 md:grid-cols-2">
         {education.map((item) => (
-          <li key={item.credential}>
-            <article className="rounded-2xl border border-line bg-surface p-6 sm:p-8">
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                <h3 className="text-xl font-medium tracking-tight">{item.credential}</h3>
-                <p className="text-sm text-stone">{item.period}</p>
-              </div>
-              <p className="mt-1 text-accent">{item.school}</p>
-              <ul className="mt-4 space-y-1 text-muted">
-                {item.details.map((detail) => (
-                  <li key={detail}>{detail}</li>
-                ))}
-              </ul>
-            </article>
+          <li key={item.credential} className="border-t border-line pt-6">
+            <p className="text-sm text-stone">{item.period}</p>
+            <h3 className="mt-2 font-serif text-3xl font-medium leading-tight tracking-tight">
+              {item.credential}
+            </h3>
+            <p className="mt-3 text-accent">{item.school}</p>
+            <ul className="mt-3 space-y-1 text-muted">
+              {item.details.map((detail) => (
+                <li key={detail}>{detail}</li>
+              ))}
+            </ul>
           </li>
         ))}
       </ol>
 
-      <div className="mt-6 rounded-2xl border border-line bg-surface p-6 sm:p-8">
-        <h3 className="text-sm tracking-wide text-stone">Awards</h3>
-        <ul className="mt-4 space-y-4">
+      <div className="mt-14">
+        <h3 className="font-serif text-3xl">Awards</h3>
+        <ul className="mt-4 max-w-3xl divide-y divide-line">
           {awards.map((award) => (
-            <li key={award.name} className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+            <li
+              key={award.name}
+              className="flex flex-col gap-1 py-4 first:pt-0 last:pb-0 sm:flex-row sm:items-baseline sm:justify-between"
+            >
               <span>
                 {award.name}
                 <span className="text-muted"> · {award.by}</span>

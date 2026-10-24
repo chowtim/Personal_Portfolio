@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 /*
-  Palette — change these to restyle the site.
-  background #0a0a0a · surface #141414 · raised #1c1c1c
-  text #f4f4f5 · muted #a1a1aa · stone #a8a29e · accent #3b82f6
+  Architecture pairing from the UI/UX Pro Max palette:
+  warm concrete ground, ink, and brass.
+  The portrait is baked onto the same ground.
 */
 :root {
-  --background: #0a0a0a;
-  --foreground: #f4f4f5;
-  --muted: #a1a1aa;
-  --surface: #141414;
-  --raised: #1c1c1c;
-  --line: #2a2a2a;
-  --accent: #3b82f6;
-  --stone: #a8a29e;
-  color-scheme: dark;
+  --background: #efeae2;
+  --foreground: #1a1814;
+  --muted: #4a453c;
+  --surface: #f7f4ee;
+  --raised: #e4ddd1;
+  --line: #d4cbbd;
+  --accent: #7a4e1d;
+  --stone: #5c564c;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  color-scheme: light;
 }
 
 @theme inline {
@@ -26,11 +27,13 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-stone: var(--stone);
-  --font-sans: var(--font-inter), "PingFang HK", "Microsoft JhengHei", sans-serif;
+  --font-sans: var(--font-baskerville), "PingFang HK", "Microsoft JhengHei", serif;
+  --font-serif: var(--font-cormorant), "PingFang HK", "Microsoft JhengHei", serif;
 }
 
 html {
   scroll-behavior: smooth;
+  scrollbar-color: #b7ad9e var(--background);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -40,30 +43,84 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse 70% 40% at 100% 0%, rgb(122 78 29 / 0.08), transparent 55%),
+    radial-gradient(ellipse 50% 30% at 0% 100%, rgb(26 24 20 / 0.05), transparent 50%);
   color: var(--foreground);
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  background: #1a1814;
+  color: #f7f4ee;
 }
 
-/* Keyboard focus, kept visible on the dark background. */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
-.hero-glow {
-  background:
-    radial-gradient(ellipse 70% 45% at 50% -10%, rgb(59 130 246 / 0.22), transparent 55%),
-    radial-gradient(ellipse 40% 30% at 100% 0%, rgb(59 130 246 / 0.08), transparent 50%);
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-/* Framer writes inline transforms. !important keeps reduced-motion users still. */
+::-webkit-scrollbar-thumb {
+  background: #b7ad9e;
+}
+
+.press {
+  transition:
+    transform 160ms var(--ease-out),
+    box-shadow 160ms var(--ease-out),
+    background-color 160ms ease;
+}
+
+.press:active {
+  transform: scale(0.97) translateY(1px);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-enter {
-    opacity: 1 !important;
-    transform: none !important;
+  .press,
+  .press:active {
+    transition: none;
+    transform: none;
   }
+}
+
+.press-ink {
+  background-image: linear-gradient(180deg, #3a342c 0%, #1a1814 55%, #12100d 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 248 235 / 0.28),
+    inset 0 -1px 0 rgb(0 0 0 / 0.45),
+    0 1px 0 rgb(255 255 255 / 0.45),
+    0 8px 16px rgb(26 24 20 / 0.12);
+  color: #f7f4ee;
+}
+
+.press-ink:hover {
+  background-image: linear-gradient(180deg, #4a4338 0%, #241f1a 100%);
+}
+
+.press-ink:active {
+  box-shadow:
+    inset 0 2px 5px rgb(0 0 0 / 0.45),
+    inset 0 1px 0 rgb(255 248 235 / 0.08);
+}
+
+.press-plate {
+  background-image: linear-gradient(180deg, #fbf8f2 0%, #e7e0d4 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.85),
+    inset 0 -1px 0 rgb(26 24 20 / 0.08),
+    0 1px 0 rgb(255 255 255 / 0.4),
+    0 6px 14px rgb(26 24 20 / 0.06);
+}
+
+.press-plate:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.press-plate:active {
+  box-shadow: inset 0 2px 4px rgb(26 24 20 / 0.16);
 }

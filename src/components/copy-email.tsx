@@ -19,7 +19,7 @@ export function CopyEmail({ email }: { email: string }) {
     <button
       type="button"
       onClick={onCopy}
-      className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-surface px-6 text-sm font-medium transition-colors hover:border-accent/60 hover:bg-raised"
+      className="press press-plate inline-flex h-12 items-center justify-center border border-line px-5 text-sm"
     >
       <span className="sr-only">Copy email address. </span>
       <span aria-live="polite">{label}</span>

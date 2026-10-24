@@ -1,6 +1,6 @@
 /**
- * Site copy. Facts come from Curriculum Vitae.pdf.
- * Phone number and home address are intentionally omitted.
+ * Site copy. Facts come from input/Curriculum Vitae.docx.
+ * The home address and phone number are intentionally omitted.
  * Edit this file to change what the page says.
  */
 
@@ -12,18 +12,15 @@ export const profile = {
   currentRole: "Geotechnical Engineering Graduate",
   organization: "Hong Kong Housing Authority",
   tagline:
-    "Chartered civil engineer with practical experience in public-sector infrastructure, including slope stability, ELS design, and site supervision.",
+    "Designing and supervising site formation and excavation and lateral support for public housing developments of about HK$1 billion.",
   location: "Kwai Chung, Hong Kong",
   email: "chowwingtimmartin@yahoo.com.hk",
   linkedIn: {
     label: "Wing Tim Chow",
     href: "https://www.linkedin.com/in/wing-tim-chow-496489229",
   },
-  github: {
-    label: "chowtim",
-    href: "https://github.com/chowtim",
-  },
   availability: "Notice period: 3 months (negotiable)",
+  openTo: "Open to opportunities in civil and geotechnical engineering.",
 } as const;
 
 export const navItems = [
@@ -35,9 +32,8 @@ export const navItems = [
 ] as const;
 
 export const aboutParagraphs = [
-  "I am a chartered civil engineer and a Member of the Institution of Civil Engineers (MICE, membership number 93497557). My work is in public-sector infrastructure, with a track record in slope stability analysis, excavation and lateral support (ELS) design, and site supervision for large-scale housing developments.",
-  "At the Hong Kong Housing Authority I prepare geotechnical designs and reports, review ELS schemes, and support ground investigation contracts. A secondment to the Geotechnical Engineering Office covered the geology of Hong Kong, aerial photograph interpretation, and laboratory and field testing of soil and rock.",
-  "I hold an MSc in Civil Infrastructural Engineering and Management from The Hong Kong University of Science and Technology (GPA 3.83, geotechnical engineering) and a BEng in Civil Engineering from The University of Hong Kong. I have also completed training in BIM, MiC site inspection, Python for data science, and AI and digital transformation in government.",
+  "Chartered civil engineer (MICE) at the Hong Kong Housing Authority since August 2022, designing and supervising site formation and excavation and lateral support for public housing developments of about HK$1 billion. Experience covers slope stability, soil nails and excavation beside existing buildings and utilities.",
+  "Member of the Institution of Civil Engineers, membership number 93497557.",
 ] as const;
 
 export type Role = {
@@ -45,6 +41,7 @@ export type Role = {
   organization: string;
   period: string;
   points: string[];
+  projects?: { title: string; points: string[] }[];
   groups?: { title: string; points: string[] }[];
 };
 
@@ -53,19 +50,40 @@ export const experience: Role[] = [
     title: "Geotechnical Engineering Graduate",
     organization: "The Hong Kong Housing Authority",
     period: "August 2022 – Present",
-    points: [
-      "Developed geotechnical reports for soil nail designs at the San Kwai Street public housing project, with slope stability analyses in SLOPE/W.",
-      "Managed on-site construction progress and enforced safety compliance for soil nails and general civil works.",
-      "Evaluated excavation and lateral support (ELS) designs for the Lai Chi Kok Road project, including settlement calculations with FREW.",
-      "Assisted with project specifications for Ground Investigation Term Contracts A to D (2023–2025).",
+    projects: [
+      {
+        title: "Public Housing Development at San Kwai Street, Kwai Chung",
+        points: [
+          "Contract sum about HK$0.9 billion. One domestic block of about 40 storeys on a 2-storey podium, on a site of about 0.65 hectare.",
+          "Prepared the geotechnical design for site formation on registered slope 7SW-C/CR393, covering a crest footpath structure (RW1) linking Footbridge B to the Lai Cho Road development, compensation soil nails, and slope drainage.",
+          "Carried out slope stability analyses in SLOPE/W. After minipiling for Footbridge B damaged 25 existing soil nails, designed 64 compensation soil nails in 12 rows (T25/T40 bars, up to 16 m long, 150 mm holes, Class 2 corrosion protection) so that the permanent factor of safety met 1.4 under the 10-year groundwater condition, and 1.1 under the predicted worst groundwater table.",
+          "Used BIM to set out the nails and avoid clashes with the Footbridge B minipiles. Both Geoguide 7 pull-out tests were satisfactory.",
+          "Supervised soil-nail construction and monitoring of ground settlement, groundwater and tilt.",
+        ],
+      },
+      {
+        title: "Public Housing Development at 373 Lai Chi Kok Road, Sham Shui Po",
+        points: [
+          "Contract sum about HK$1 billion. A 24-storey domestic block on a 5-storey podium on a flat site of about 1,700 m² at the junction of Lai Chi Kok Road and Yen Chow Street.",
+          "Assessed the excavation and lateral support for the pile caps: FSP VI sheet piles with up to three levels of struts, and a local 30° open cut. Excavation is generally 4.0 m and locally 6.6 m from ground at +4.2 mPD.",
+          "Checked wall behaviour and ground movement with FREW, seepage with SEEP/W, and the temporary cut with SLOPE/W. Toe and hydraulic stability both exceeded a factor of safety of 2.0.",
+          "Accounted for the Grade 3 Sham Shui Po Police Station, the 5-storey building at 37 Yen Chow Street on shallow foundations, the Kiu Kiang Street Substation, and the six-lane roads on two sides. Estimated settlement was about 13–17 mm at 37 Yen Chow Street and about 20–23 mm at the adjacent roads, with pre-grouting and a pumping test before excavation.",
+        ],
+      },
+      {
+        title: "Ground Investigation Term Contracts A to D, 2023–2025",
+        points: ["Assisted in preparing specifications."],
+      },
     ],
+    points: [],
     groups: [
       {
         title:
           "Secondment to the Geotechnical Engineering Office, Civil Engineering and Development Department",
         points: [
-          "Planning Division: engineering geology, the geology of Hong Kong, and aerial photograph interpretation.",
-          "Public Works Central Laboratory: laboratory and field testing of soil and rock for geotechnical assessments.",
+          "Planning Division: prepared an aerial photograph interpretation report and carried out rock joint mapping.",
+          "Public Works Central Laboratory: investigated the strength and dilatancy of densely and loosely compacted completely decomposed tuff using Proctor, particle-size, direct-shear and CD, CUM and CUS triaxial tests at relative compactions of 80% to 95%, and compared peak and critical-state friction angles.",
+          "Compared incremental-loading and constant-rate-of-strain oedometer tests on kaolin at strain rates from 0.001%/min to 0.1%/min, including preconsolidation pressure and compression parameters.",
         ],
       },
     ],
@@ -82,35 +100,22 @@ export const experience: Role[] = [
     title: "Summer Intern",
     organization: "Hong Kong Housing Society",
     period: "July 2020 – August 2020",
-    points: ["Verified design data and supported tender evaluation."],
+    points: ["Verified design data and supported tender evaluation processes."],
   },
 ];
 
 export const skillGroups = [
   {
-    title: "Technical",
-    items: [
-      "Slope stability analysis",
-      "Soil nail design",
-      "ELS design",
-      "Settlement calculation",
-      "Site supervision",
-      "Ground investigation contracts",
-      "Engineering geology",
-      "Soil and rock testing",
-    ],
-  },
-  {
-    title: "Tools",
-    items: ["SLOPE/W", "SEEP/W", "FREW", "PLAXIS", "BIM Viewer"],
+    title: "Geotechnical software",
+    items: ["SLOPE/W", "SEEP/W", "FREW", "PLAXIS"],
   },
   {
     title: "Languages",
-    items: ["English", "Cantonese", "Mandarin", "Cangjie Chinese typing"],
+    items: ["English", "Cantonese", "Mandarin"],
   },
 ] as const;
 
-export const credentials = [
+export const qualifications = [
   {
     name: "Member (MICE), Institution of Civil Engineers",
     detail: "Membership number 93497557",
@@ -127,6 +132,9 @@ export const credentials = [
     name: "Certificate in MiC Installation Quality Assurance, Site Inspection and Supervision",
     detail: "Hong Kong Institute of Construction, Construction Industry Council",
   },
+] as const;
+
+export const professionalDevelopment = [
   {
     name: "AI and Digital Transformation in Government",
     detail: "Saïd Business School, University of Oxford",
@@ -141,7 +149,10 @@ export const credentials = [
   },
 ] as const;
 
-export const otherFacts = ["Hong Kong Driving Licence Class 1 and 2"] as const;
+export const otherFacts = [
+  "Cangjie Chinese typing",
+  "Hong Kong Driving Licence Class 1 and 2",
+] as const;
 
 export const education = [
   {

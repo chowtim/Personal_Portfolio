@@ -2,53 +2,38 @@ import { CopyEmail } from "@/components/copy-email";
 import { Section } from "@/components/section";
 import { profile } from "@/content/profile";
 
-const links = [
-  { label: "LinkedIn", value: profile.linkedIn.label, href: profile.linkedIn.href },
-  { label: "GitHub", value: profile.github.label, href: profile.github.href },
-];
-
 export function Contact() {
   return (
-    <Section id="contact" eyebrow="05" title="Contact">
-      <div className="grid gap-8 rounded-2xl border border-line bg-surface p-6 sm:p-8 md:grid-cols-2">
+    <Section id="contact">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
+        <div>
+          <h2 className="font-serif text-5xl font-medium tracking-tight">Contact</h2>
+          <p className="mt-6 max-w-xl font-serif text-3xl leading-tight">{profile.openTo}</p>
+          <p className="mt-3 text-muted">{profile.availability}</p>
+        </div>
         <div>
           <p className="text-sm text-stone">Email</p>
           <a
             href={`mailto:${profile.email}`}
-            className="mt-2 inline-block break-all text-lg text-foreground hover:text-accent"
+            className="mt-2 inline-block break-all text-lg underline decoration-line underline-offset-4 hover:text-accent"
           >
             {profile.email}
           </a>
           <div className="mt-5">
             <CopyEmail email={profile.email} />
           </div>
+          <p className="mt-6 text-sm text-stone">Location</p>
+          <p className="mt-1 text-lg">{profile.location}</p>
+          <p className="mt-6 text-sm text-stone">LinkedIn</p>
+          <a
+            href={profile.linkedIn.href}
+            className="mt-1 inline-block text-lg underline decoration-line underline-offset-4 hover:text-accent"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {profile.linkedIn.label}
+          </a>
         </div>
-
-        <dl className="space-y-5">
-          <div>
-            <dt className="text-sm text-stone">Location</dt>
-            <dd className="mt-1 text-lg">{profile.location}</dd>
-          </div>
-          {links.map((link) => (
-            <div key={link.label}>
-              <dt className="text-sm text-stone">{link.label}</dt>
-              <dd className="mt-1">
-                <a
-                  href={link.href}
-                  className="text-lg text-foreground hover:text-accent"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.value}
-                </a>
-              </dd>
-            </div>
-          ))}
-          <div>
-            <dt className="text-sm text-stone">Availability</dt>
-            <dd className="mt-1 text-lg">{profile.availability}</dd>
-          </div>
-        </dl>
       </div>
     </Section>
   );
