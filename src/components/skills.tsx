@@ -1,4 +1,4 @@
-import { otherFacts, professionalDevelopment, qualifications, skillGroups } from "@/content/profile";
+import { professionalDevelopment, qualifications, skillGroups } from "@/content/profile";
 import { Section } from "@/components/section";
 
 function CredentialList({ items }: { items: readonly { name: string; detail: string }[] }) {
@@ -29,7 +29,6 @@ export function Skills() {
           </div>
         ))}
       </div>
-      <p className="mt-8 text-sm text-stone">{otherFacts.join(" · ")}</p>
 
       <div id="certifications" className="mt-16 scroll-mt-24">
         <h3 className="font-serif text-4xl font-medium tracking-tight">

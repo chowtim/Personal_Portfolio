@@ -12,7 +12,7 @@ export const profile = {
   currentRole: "Geotechnical Engineering Graduate",
   organization: "Hong Kong Housing Authority",
   tagline:
-    "Designing and supervising site formation and excavation and lateral support for public housing developments of about HK$1 billion.",
+    "Designing and supervising site formation and ELS works for public housing developments of about HK$1 billion.",
   location: "Kwai Tsing District, N.T.",
   email: "chowwingtimmartin@yahoo.com.hk",
   linkedIn: {
@@ -32,16 +32,26 @@ export const navItems = [
 ] as const;
 
 export const aboutParagraphs = [
-  "Chartered civil engineer (MICE) at the Hong Kong Housing Authority, designing and supervising site formation and excavation and lateral support for public housing developments of about HK$1 billion. Experience covers slope stability, soil nails and ELS works beside existing buildings and utilities.",
+  "Chartered civil engineer (MICE) at the Hong Kong Housing Authority, designing and supervising site formation and ELS works for public housing developments of about HK$1 billion. Leads site supervision teams and coordinates with contractors on quality, safety and programme.",
   "Member of the Institution of Civil Engineers, membership number 93497557.",
 ] as const;
+
+export type ProjectFigure = {
+  src: string;
+  alt: string;
+  caption: string;
+};
 
 export type Role = {
   title: string;
   organization: string;
   period: string;
   points: string[];
-  projects?: { title: string; points: string[] }[];
+  projects?: {
+    title: string;
+    points: string[];
+    figures?: { after: number; figure: ProjectFigure }[];
+  }[];
   groups?: { title: string; points: string[] }[];
 };
 
@@ -54,20 +64,39 @@ export const experience: Role[] = [
       {
         title: "Public Housing Development at San Kwai Street, Kwai Chung",
         points: [
-          "Contract sum about HK$0.9 billion. One domestic block of about 40 storeys on a 2-storey podium, on a site of about 6,500 m².",
-          "Prepared the geotechnical design for site formation on registered slope 7SW-C/CR393, covering a crest footpath structure (RW1) linking Footbridge B to the Lai Cho Road development, compensation soil nails, and slope drainage.",
-          "Carried out slope stability analyses in SLOPE/W. After minipiling for Footbridge B damaged 25 existing soil nails, designed 64 compensation soil nails in 12 rows (T25/T40 bars, up to 16 m long, 150 mm holes, Class 2 corrosion protection) so that the permanent factor of safety met 1.4 under the 10-year groundwater condition, and 1.1 under the predicted worst groundwater table.",
-          "Used BIM to set out the nails and avoid clashes with the Footbridge B minipiles. Two pull-out tests were satisfactory in accordance with Geoguide 7.",
-          "Supervised soil-nail construction and monitoring of ground settlement, groundwater and tilt.",
+          "Contract sum about HK$0.9 billion. One domestic block of about 40 storeys on a 2-storey podium, on a site of about 6,500 m². Site supervision: February–July 2025.",
+          "Prepared the geotechnical design for slope 7SW-C/CR393 (crest footpath structure RW1, compensation soil nails and slope drainage) using SLOPE/W, meeting factors of safety of 1.4 and 1.1 under 10-year groundwater condition and the predicted worst groundwater table respectively.",
+          "Used BIM to set out the nails and avoid clashes with the Footbridge B minipiles.",
+          "Led Assistant Inspectors of Works in supervising 61 working soil nails (6–16 m, T25/T40), including setting-out, drilling, grouting, nail heads, pull-out tests and TDR, to the approved drawings, Geoguide 7 and the Code of Practice for Site Supervision.",
+          "Prepared the design amendment due to site issues and instructed Technical Officers on drawing revisions for ICU and GEO amendments.",
+          "Reviewed the contractor's method statements, master programme and submissions.",
+          "Coordinated with the contractor, the survey team and the Project Geotechnical Engineer on clashes, progress and site safety.",
+        ],
+        figures: [
+          {
+            after: 1,
+            figure: {
+              src: "/san-kwai-section.png",
+              alt: "SLOPE/W section 2-2 for the site formation design at San Kwai Street",
+              caption: "slope stability analysis for the San Kwai Street",
+            },
+          },
+          {
+            after: 2,
+            figure: {
+              src: "/san-kwai-bim.png",
+              alt: "BIM view of proposed soil nails and existing minipiles at San Kwai Street",
+              caption: "Proposed soil nails and existing minipiles in BIM",
+            },
+          },
         ],
       },
       {
         title: "Public Housing Development at 373 Lai Chi Kok Road, Sham Shui Po",
         points: [
           "Contract sum about HK$1 billion. A 24-storey domestic block on a 5-storey podium on a flat site of about 1,700 m² at the junction of Lai Chi Kok Road and Yen Chow Street.",
-          "Assessed the excavation and lateral support for the pile caps: FSP VI sheet piles with up to three levels of struts, and a local 30° open cut. Excavation is generally 4.0 m and locally 6.6 m from ground at +4.2 mPD.",
-          "Checked wall deflection with FREW, seepage with SEEP/W, and the temporary cut with SLOPE/W. Ultimate limit states (toe and hydraulic stability) are checked by global factors of safety.",
-          "Accounted for the Grade II historic building Sham Shui Po Police Station, the 5-storey building at 37 Yen Chow Street on shallow foundations, the Kiu Kiang Street Substation, and the six-lane roads on two sides. Estimated settlement was about 13–17 mm at 37 Yen Chow Street and about 20–23 mm at the adjacent roads, with pre-grouting and a pumping test before excavation.",
+          "Assessed the excavation and lateral support for the pile caps (FSP VI sheet piles, up to three strut levels and a local 30° open cut; excavation generally 4.0 m and locally 6.6 m) with FREW, SEEP/W and SLOPE/W, including toe and hydraulic stability.",
+          "Accounted for the settlement of the Grade II historic Sham Shui Po Police Station, 37 Yen Chow Street on shallow foundations, the Kiu Kiang Street Substation and the adjoining six-lane roads, with pre-grouting and a pumping test before excavation.",
         ],
       },
       {
@@ -82,8 +111,7 @@ export const experience: Role[] = [
           "Secondment to the Geotechnical Engineering Office, Civil Engineering and Development Department",
         points: [
           "Planning Division: prepared an aerial photograph interpretation report and carried out rock joint mapping.",
-          "Public Works Central Laboratory: investigated the strength and dilatancy of densely and loosely compacted completely decomposed tuff using Proctor, particle-size, direct-shear and CD, CUM and CUS triaxial tests at relative compactions of 80% to 95%, and compared peak and critical-state friction angles.",
-          "Compared incremental-loading and constant-rate-of-strain oedometer tests on kaolin at strain rates from 0.001%/min to 0.1%/min, including preconsolidation pressure and compression parameters.",
+          "Public Works Central Laboratory: strength and dilatancy of compacted completely decomposed tuff, and comparison of incremental-loading and constant-rate-of-strain oedometer tests on kaolin.",
         ],
       },
     ],
@@ -147,11 +175,6 @@ export const professionalDevelopment = [
     name: "Claude Code in Action",
     detail: "Anthropic",
   },
-] as const;
-
-export const otherFacts = [
-  "Cangjie Chinese typing",
-  "Hong Kong Driving Licence Class 1 and 2",
 ] as const;
 
 export const education = [
