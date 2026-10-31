@@ -1,17 +1,34 @@
-import { aboutParagraphs } from "@/content/profile";
-import { Section } from "@/components/section";
+import { aboutFacts, aboutLead, registrations } from "@/content/profile";
 
 export function About() {
   return (
-    <Section id="about" className="border-t border-line">
-      <div className="grid gap-8 md:grid-cols-[220px_minmax(0,1fr)] md:gap-16">
-        <h2 className="font-serif text-5xl font-medium tracking-tight">About</h2>
-        <div className="max-w-[68ch] space-y-5 text-lg leading-relaxed text-muted">
-          {aboutParagraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+    <section id="about" className="section-space">
+      <div className="about-grid">
+        <h2 className="rise">About</h2>
+        <p className="lead rise d1">{aboutLead}</p>
+        <dl className="facts rise d2">
+          {aboutFacts.map((fact) => (
+            <div key={fact.label}>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
           ))}
+        </dl>
+        <div className="record rise d3">
+          <div className="reg-head">
+            <p className="group-label">Professional Qualification</p>
+            <p className="group-label">Membership number</p>
+          </div>
+          <ul className="reg-list">
+            {registrations.map((item) => (
+              <li key={item.name}>
+                <span>{item.name}</span>
+                <span>{item.value}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-    </Section>
+    </section>
   );
 }
