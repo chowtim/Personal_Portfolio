@@ -377,24 +377,29 @@ export const skillGroups = [
 
 export const heroSlides = [
   {
-    src: asset("/hero/austin-crane.jpg"),
-    alt: "A tower crane on a high-rise under construction. Photograph by Larry D. Moore.",
+    src: asset("/hero/rig.jpg"),
+    alt: "A drilling rig on the working platform.",
+    focus: "center 42%",
   },
   {
-    src: asset("/hero/foundation-rebar.jpg"),
-    alt: "Engineers on a foundation slab of reinforcing steel at a building site.",
+    src: asset("/hero/scaffold.jpg"),
+    alt: "Scaffold running up a slope beneath the trees.",
+    focus: "58% center",
   },
   {
-    src: asset("/hero/formwork-ebisu.jpg"),
-    alt: "Timber formwork and reinforcing cages on a concrete building under construction.",
+    src: asset("/hero/pullout.jpg"),
+    alt: "Dial gauges on a soil-nail pull-out test.",
+    focus: "center 8%",
   },
   {
-    src: asset("/hero/foundation-formwork.webp"),
-    alt: "Aerial view of foundation formwork and reinforcing steel on a building site.",
+    src: asset("/hero/drilling.jpg"),
+    alt: "A drilling rig set up on a slope among scaffold tubes.",
+    focus: "center 45%",
   },
 ] as const;
 
 export const heroDetail = {
-  src: asset("/hero/miami-crane-jpg.jpg"),
-  alt: "Looking up through a tower crane during high-rise construction in Miami.",
+  src: asset("/hero/lecture.jpg"),
+  alt: "Speaking to a lecture hall beside a site plan.",
+  focus: "72% 55%",
 } as const;

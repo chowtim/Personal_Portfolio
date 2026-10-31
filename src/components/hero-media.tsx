@@ -28,6 +28,7 @@ export function HeroMedia() {
             alt={slideIndex === index ? slide.alt : ""}
             width={2000}
             height={1400}
+            style={{ objectPosition: slide.focus }}
             aria-hidden={slideIndex === index ? undefined : true}
           />
         ))}
@@ -42,6 +43,7 @@ export function HeroMedia() {
           alt={heroDetail.alt}
           width={2000}
           height={1400}
+          style={{ objectPosition: heroDetail.focus }}
         />
       </div>
       <div className="photo-end" id="photo-end" />
