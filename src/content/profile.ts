@@ -125,6 +125,7 @@ export type Project = {
   sideImage?: { src: string; alt: string; caption: string };
   paragraphs: string[];
   strata?: boolean;
+  figures?: { src: string; alt: string; caption: string; width: number; height: number }[];
 };
 
 export const workIntro = {
@@ -178,6 +179,22 @@ export const projects: Project[] = [
       "Contract sum about HK$1 billion. A 24-storey domestic block on a 5-storey podium, on a flat site of about 1,700 m² at the junction of Lai Chi Kok Road and Yen Chow Street.",
       "Assessed the excavation and lateral support for the pile caps: FSP VI sheet piles, up to three strut levels and a local 30° open cut. Excavation is generally 4.0 m and locally 6.6 m. The check used FREW, SEEP/W and SLOPE/W, including toe and hydraulic stability.",
       "Accounted for settlement of the Grade II historic Sham Shui Po Police Station at 37 Yen Chow Street, on shallow foundations, the Kiu Kiang Street Substation, and the adjoining six-lane roads, with pre-grouting and a pumping test before excavation.",
+    ],
+    figures: [
+      {
+        src: asset("/lai-chi-kok-seep.png"),
+        alt: "SEEP/W groundwater drawdown analysis for section 2-2 at 373 Lai Chi Kok Road, with fill, alluvium and completely decomposed granite",
+        caption: "SEEP/W. Groundwater drawdown, section 2-2.",
+        width: 554,
+        height: 571,
+      },
+      {
+        src: asset("/lai-chi-kok-frew.png"),
+        alt: "FREW output for stage 10 at 373 Lai Chi Kok Road, excavated to −2.425 mPD, showing shear, moment and displacement",
+        caption: "FREW. Stage 10, excavated to −2.425 mPD.",
+        width: 554,
+        height: 394,
+      },
     ],
   },
   {

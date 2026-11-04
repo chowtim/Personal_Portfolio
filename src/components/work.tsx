@@ -120,6 +120,7 @@ export function Work() {
                           ))}
                         </div>
                       </div>
+                      {project.figures?.length ? <Analysis figures={project.figures} /> : null}
                     </>
                   )}
                 </article>
@@ -128,6 +129,23 @@ export function Work() {
         </div>
       ))}
     </section>
+  );
+}
+
+function Analysis({
+  figures,
+}: {
+  figures: NonNullable<(typeof projects)[number]["figures"]>;
+}) {
+  return (
+    <div className="analysis">
+      {figures.map((figure) => (
+        <figure key={figure.src}>
+          <img src={figure.src} alt={figure.alt} width={figure.width} height={figure.height} />
+          <figcaption>{figure.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
   );
 }
 

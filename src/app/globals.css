@@ -560,6 +560,31 @@ main p,
   max-width: 40rem;
 }
 
+.analysis {
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2.5rem;
+  align-items: start;
+}
+
+.analysis figure {
+  margin: 0;
+  background: var(--paper);
+}
+
+.analysis img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.analysis figcaption {
+  padding-top: 0.45rem;
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
 .side-figure {
   margin: 0;
   background: var(--surface);
@@ -1085,7 +1110,8 @@ main p,
   .contact,
   .record-head,
   .sheet-split,
-  .measures {
+  .measures,
+  .analysis {
     grid-template-columns: 1fr;
   }
 
