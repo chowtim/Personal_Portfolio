@@ -157,8 +157,12 @@ summary {
 }
 
 .pane-a .slide {
+  top: 0;
+  height: 168%;
+  bottom: auto;
   opacity: 0;
   transition: opacity 1.6s var(--ease);
+  object-fit: cover;
 }
 
 .pane-a .slide.on {
@@ -167,6 +171,56 @@ summary {
 
 .pane-b .slide {
   transform: scale(1);
+  object-position: center;
+}
+
+.pane-b .film {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease);
+}
+
+.pane-b .film.ready {
+  opacity: 1;
+}
+
+.pane-b .film-view {
+  position: absolute;
+  inset: 0;
+}
+
+.pane-b .film .cesium-viewer,
+.pane-b .film .cesium-viewer-cesiumWidgetContainer,
+.pane-b .film .cesium-widget,
+.pane-b .film .cesium-widget canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pane-b .cesium-viewer-toolbar,
+.pane-b .cesium-viewer-animationContainer,
+.pane-b .cesium-viewer-timelineContainer,
+.pane-b .cesium-viewer-fullscreenContainer,
+.pane-b .cesium-viewer-bottom {
+  display: none;
+}
+
+.film-caption {
+  position: absolute;
+  z-index: 2;
+  left: var(--margin);
+  bottom: 1.25rem;
+  margin: 0;
+  max-width: 24rem;
+  padding: 0.35rem 0.55rem;
+  background: var(--rail);
+  color: var(--paper);
+  font-size: var(--step-small);
 }
 
 .photo-end {
@@ -220,6 +274,10 @@ body[data-menu="open"] .hero-foot {
   font-weight: 500;
 }
 
+.rail[data-docked="true"] .rail-sentence {
+  display: none;
+}
+
 .rail h1 {
   margin: 0;
   font-size: 2rem;
@@ -240,9 +298,11 @@ body[data-menu="open"] .hero-foot {
 }
 
 .rail-sentence {
+  /* full row, so the sentence does not orphan one word */
   margin: 0;
-  flex: 1 1 16rem;
-  max-width: 44ch;
+  flex: 1 1 100%;
+  order: 8;
+  max-width: none;
   font-size: var(--step-ui);
   line-height: 1.35;
   color: inherit;
@@ -292,6 +352,11 @@ body[data-menu="open"] .hero-foot {
 .button:hover {
   background: var(--ink);
   color: var(--paper);
+}
+
+.rail .button:hover {
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .button:active {
@@ -490,6 +555,14 @@ main p,
   text-align: center;
 }
 
+.visual.type-visual.quiet {
+  min-height: 12rem;
+}
+
+.visual.type-visual.quiet .visual-words {
+  font-size: var(--step-head);
+}
+
 .project:nth-child(3) .type-visual {
   background: var(--field);
   color: var(--field-ink);
@@ -558,6 +631,39 @@ main p,
   display: grid;
   gap: 1.25rem;
   max-width: 40rem;
+}
+
+.cluster-split {
+  max-width: none;
+  grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.7fr);
+  column-gap: 3rem;
+  align-items: start;
+}
+
+.cluster-split .aside {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.5rem;
+  align-content: end;
+}
+
+.cluster-split .aside strong {
+  display: block;
+  font-size: var(--step-head);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.cluster-split .aside span {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: var(--step-small);
 }
 
 .analysis {
@@ -1071,37 +1177,27 @@ main p,
 }
 
 @media (max-width: 900px) {
-  .rail-sentence,
-  .rail-links,
-  .rail .button {
+  html {
+    scroll-padding-top: 9rem;
+  }
+
+  .rail-links {
     display: none;
+  }
+
+  .rail-sentence {
+    flex: 1 1 100%;
+    order: 5;
+    max-width: 28rem;
+  }
+
+  .rail .button {
+    order: 6;
   }
 
   .menu-button {
     display: inline-flex;
     margin-left: auto;
-  }
-
-  .hero-foot {
-    display: grid;
-    gap: 0.75rem;
-    position: absolute;
-    z-index: 2;
-    left: 20px;
-    bottom: 20px;
-    width: min(18rem, calc(100% - 40px));
-    padding: 0.85rem 0.9rem 0.95rem;
-    background: var(--rail);
-    color: var(--paper);
-  }
-
-  .hero-foot span {
-    font-size: 1.0625rem;
-    max-width: 22ch;
-  }
-
-  .hero-foot .button {
-    width: 100%;
   }
 
   .about-grid,
@@ -1137,6 +1233,12 @@ main p,
     order: -1;
   }
 
+  .cluster-split,
+  .cluster-split .aside {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
   .visual {
     order: 1;
     min-height: 0;
@@ -1152,6 +1254,14 @@ main p,
 
   .visual.type-visual {
     min-height: 14rem;
+  }
+
+  .visual.type-visual.quiet {
+    min-height: 8rem;
+  }
+
+  .cluster-split {
+    grid-template-columns: 1fr;
   }
 
   .project-sheet .type-visual {
@@ -1287,10 +1397,6 @@ main p,
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .pane-b .slide {
-    animation: drift 18s linear infinite alternate;
-  }
-
   .rise {
     animation: rise 0.45s var(--ease-out) both;
   }

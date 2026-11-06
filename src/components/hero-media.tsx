@@ -2,11 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import { heroDetail, heroSlides, profile } from "@/content/profile";
+import { SiteFilm } from "@/components/site-film";
+import { heroFilm, heroSlides } from "@/content/profile";
 
 export function HeroMedia() {
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
+  const [modelLive, setModelLive] = useState(false);
+  const [showModel, setShowModel] = useState(false);
+
+  useEffect(() => {
+    if (reduce === false) setShowModel(true);
+  }, [reduce]);
 
   useEffect(() => {
     if (reduce) return;
@@ -32,19 +39,22 @@ export function HeroMedia() {
             aria-hidden={slideIndex === index ? undefined : true}
           />
         ))}
-        <div className="hero-foot">
-          <span>{profile.sentence}</span>
-        </div>
       </div>
       <div className="pane pane-b">
         <img
           className="slide on"
-          src={heroDetail.src}
-          alt={heroDetail.alt}
-          width={2000}
-          height={1400}
-          style={{ objectPosition: heroDetail.focus }}
+          src={heroFilm.poster}
+          alt={modelLive ? "" : heroFilm.alt}
+          width={1280}
+          height={720}
+          aria-hidden={modelLive || undefined}
         />
+        {showModel ? <SiteFilm onLive={() => setModelLive(true)} /> : null}
+        <p className="film-caption">
+          {modelLive
+            ? "San Kwai Street. 3D Visualisation Map © Lands Department"
+            : "San Kwai Street. Aerial photograph © Esri, Maxar, Earthstar Geographics"}
+        </p>
       </div>
       <div className="photo-end" id="photo-end" />
     </div>

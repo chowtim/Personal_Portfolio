@@ -56,6 +56,9 @@ export function SiteHeader() {
           ))}
         </ul>
       </nav>
+      <a className="button" href={`mailto:${profile.email}`}>
+        Email me
+      </a>
       <button type="button" className="text-button" onClick={toggleTheme} aria-pressed={dark}>
         {themeLabel}
       </button>
@@ -97,6 +100,9 @@ export function SiteHeader() {
                 </a>
               ))}
             </nav>
+            <a href={`mailto:${profile.email}`} onClick={() => setOpen(false)}>
+              Email me
+            </a>
             <button type="button" onClick={toggleTheme} aria-pressed={dark}>
               {themeLabel} mode
             </button>

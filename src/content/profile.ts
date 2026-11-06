@@ -124,6 +124,8 @@ export type Project = {
   image?: { src: string; alt: string; caption: string };
   sideImage?: { src: string; alt: string; caption: string };
   paragraphs: string[];
+  aside?: { word: string; caption: string }[];
+  quiet?: boolean;
   strata?: boolean;
   figures?: { src: string; alt: string; caption: string; width: number; height: number }[];
 };
@@ -211,6 +213,10 @@ export const projects: Project[] = [
       "Planning Division: prepared an aerial photograph interpretation report and carried out rock joint mapping.",
       "Public Works Central Laboratory: strength and dilatancy of compacted completely decomposed tuff, and a comparison of incremental-loading and constant-rate-of-strain oedometer tests on kaolin.",
     ],
+    aside: [
+      { word: "Planning", caption: "Aerial photograph interpretation and rock joint mapping" },
+      { word: "Laboratory", caption: "Strength and oedometer tests on decomposed tuff and kaolin" },
+    ],
   },
   {
     id: "ground-investigation",
@@ -223,6 +229,10 @@ export const projects: Project[] = [
     visualNote: "for GI Term Contracts",
     minHeight: "48svh",
     paragraphs: ["Assisted in preparing specifications for the ground investigation term contracts."],
+    aside: [
+      { word: "2023–2025", caption: "Term contracts A to D" },
+      { word: "Specifications", caption: "Ground investigation documents" },
+    ],
   },
   {
     id: "buildings-department",
@@ -231,11 +241,16 @@ export const projects: Project[] = [
     kind: "",
     period: "July to August 2021",
     visual: "type",
+    quiet: true,
     visualText: ["Buildings Department"],
     visualNote: "",
     minHeight: "42svh",
     paragraphs: [
       "Issued orders for unauthorized building works and prepared compliance inspection reports.",
+    ],
+    aside: [
+      { word: "2021", caption: "July to August" },
+      { word: "Orders", caption: "Unauthorized building works and compliance reports" },
     ],
   },
   {
@@ -245,10 +260,15 @@ export const projects: Project[] = [
     kind: "",
     period: "July to August 2020",
     visual: "type",
+    quiet: true,
     visualText: ["Hong Kong", "Housing Society"],
     visualNote: "",
     minHeight: "42svh",
     paragraphs: ["Verified design data and supported tender evaluation."],
+    aside: [
+      { word: "2020", caption: "July to August" },
+      { word: "Tender", caption: "Design data and tender evaluation" },
+    ],
   },
 ];
 
@@ -394,29 +414,34 @@ export const skillGroups = [
 
 export const heroSlides = [
   {
-    src: asset("/hero/rig.jpg"),
-    alt: "A drilling rig on the working platform.",
-    focus: "center 42%",
-  },
-  {
     src: asset("/hero/scaffold.jpg"),
     alt: "Scaffold running up a slope beneath the trees.",
-    focus: "58% center",
-  },
-  {
-    src: asset("/hero/pullout.jpg"),
-    alt: "Dial gauges on a soil-nail pull-out test.",
-    focus: "center 8%",
+    focus: "center 42%",
   },
   {
     src: asset("/hero/drilling.jpg"),
     alt: "A drilling rig set up on a slope among scaffold tubes.",
-    focus: "center 45%",
+    focus: "center 36%",
+  },
+  {
+    src: asset("/hero/pullout.jpg"),
+    alt: "Dial gauges on a soil-nail pull-out test.",
+    focus: "center 24%",
+  },
+  {
+    src: asset("/hero/rig.jpg"),
+    alt: "A drilling rig on the working platform.",
+    focus: "center 34%",
+  },
+  {
+    src: asset("/hero/lecture.jpg"),
+    alt: "Speaking to a lecture hall beside a site plan.",
+    focus: "70% 48%",
   },
 ] as const;
 
-export const heroDetail = {
-  src: asset("/hero/lecture.jpg"),
-  alt: "Speaking to a lecture hall beside a site plan.",
-  focus: "72% 55%",
+export const heroFilm = {
+  src: asset("/hero/san-kwai-esri.jpg"),
+  poster: asset("/hero/san-kwai-esri.jpg"),
+  alt: "An aerial photograph of San Kwai Street, with the slope and the building site marked.",
 } as const;

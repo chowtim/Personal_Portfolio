@@ -5,7 +5,7 @@ export function Practice() {
   return (
     <section id="skills" className="section-space">
       <div className="practice-grid">
-        <h2>Skills</h2>
+        <h2 className="rise">Skills</h2>
         <div className="practice-col">
           <p className="group-label">{software.label}</p>
           <div className="rows">

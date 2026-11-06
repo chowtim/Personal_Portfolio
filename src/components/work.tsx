@@ -17,7 +17,7 @@ export function Work() {
       </header>
       {employers.map((employer) => (
         <div className="employer" key={employer}>
-          <h3 className="employer-name">{employer}</h3>
+          <h3 className="employer-name rise">{employer}</h3>
           {projects
             .filter((project) => project.employer === employer)
             .map((project) => {
@@ -30,7 +30,7 @@ export function Work() {
                 : poster.length > 18;
               const posterBlock =
                 lines.length > 0 ? (
-                  <div className="visual type-visual">
+                  <div className={project.quiet ? "visual type-visual quiet" : "visual type-visual"}>
                     {titledByPoster ? (
                       <h4 className={longPoster ? "visual-words long" : "visual-words"}>
                         {lines.map((line) => (
@@ -107,7 +107,7 @@ export function Work() {
                   ) : (
                     <>
                       {posterBlock}
-                      <div className="cluster">
+                      <div className={project.aside ? "cluster cluster-split" : "cluster"}>
                         <div className="copy">
                           <h4 className={project.title.length > 36 ? "long" : undefined}>{project.title}</h4>
                           {project.kind || project.period ? (
@@ -119,6 +119,16 @@ export function Work() {
                             <p key={paragraph}>{paragraph}</p>
                           ))}
                         </div>
+                        {project.aside ? (
+                          <ul className="aside">
+                            {project.aside.map((item) => (
+                              <li key={item.word}>
+                                <strong>{item.word}</strong>
+                                <span>{item.caption}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
                       </div>
                       {project.figures?.length ? <Analysis figures={project.figures} /> : null}
                     </>

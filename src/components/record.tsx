@@ -4,13 +4,13 @@ export function Record() {
   return (
     <section id="background" className="section-space">
       <div className="record-head">
-        <h2>Background</h2>
+        <h2 className="rise">Background</h2>
       </div>
       {backgroundGroups.map((group) => {
         const showDetail = group.label === "Education" || group.label === "Professional Qualification";
         return (
           <div className="background-group" key={group.label}>
-            <h3>{group.label}</h3>
+            <h3 className="rise">{group.label}</h3>
             <table className="record-table">
               <thead>
                 <tr>
