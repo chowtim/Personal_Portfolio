@@ -210,6 +210,68 @@ summary {
   display: none;
 }
 
+.film-grain,
+.film-grain canvas {
+  pointer-events: none;
+}
+
+/* Uiverse press, SupportHotline / odd-wasp-42 (MIT), recolored to the stone rail.
+   https://www.uiverse.io/SupportHotline/odd-wasp-42 */
+.film-pause {
+  position: absolute;
+  z-index: 3;
+  right: var(--margin);
+  bottom: 4.25rem;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: 0.4rem 0.9rem;
+  border: solid 2px var(--rail);
+  border-radius: 0;
+  background: var(--rail);
+  color: var(--paper);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  box-shadow:
+    inset 0 -6px 18px -6px transparent,
+    inset -1px -1px 6px 0 rgba(81, 78, 74, 0.45);
+  transition: box-shadow 0.3s;
+}
+
+.film-pause:hover {
+  background: var(--rail);
+  color: var(--paper);
+  box-shadow:
+    inset 0 -6px 18px -6px rgba(28, 27, 26, 0.72),
+    inset 0 6px 18px -6px rgba(28, 27, 26, 0.55),
+    -1px -1px 6px 0 rgba(81, 78, 74, 0.45);
+}
+
+.film-pause:active {
+  box-shadow:
+    inset 0 -12px 12px -6px rgba(28, 27, 26, 0.8),
+    inset 0 12px 12px -6px rgba(28, 27, 26, 0.7),
+    inset 12px 0 12px -6px rgba(28, 27, 26, 0.45),
+    inset -12px 0 12px -6px rgba(28, 27, 26, 0.45);
+}
+
+.uiverse-label {
+  display: block;
+  width: fit-content;
+  margin: auto;
+  font-weight: 500;
+  transition: transform 0.3s;
+}
+
+.film-pause:hover .uiverse-label {
+  transform: scale(0.9);
+}
+
+.film-pause:active .uiverse-label {
+  transform: scale(0.8);
+}
+
 .film-caption {
   position: absolute;
   z-index: 2;
@@ -1376,6 +1438,11 @@ main p,
 
   .pane-a .slide {
     transition: none;
+  }
+
+  .film-pause .uiverse-label {
+    transition: none;
+    transform: none;
   }
 
   .pane-b .slide {

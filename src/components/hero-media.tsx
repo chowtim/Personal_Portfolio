@@ -1,9 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import { SiteFilm } from "@/components/site-film";
 import { heroFilm, heroSlides } from "@/content/profile";
+import Noise from "@/components/noise";
+
+const SiteFilm = dynamic(() => import("@/components/site-film").then((mod) => mod.SiteFilm), {
+  ssr: false,
+});
+
+const FilmGrainLayer = dynamic(
+  () => import("@/components/film-grain").then((mod) => mod.FilmGrainLayer),
+  { ssr: false },
+);
 
 export function HeroMedia() {
   const reduce = useReducedMotion();
@@ -39,6 +49,7 @@ export function HeroMedia() {
             aria-hidden={slideIndex === index ? undefined : true}
           />
         ))}
+        <Noise opacity={0.14} blendMode="multiply" dust={0} scratches={0} scanlines={0} flicker={0} />
       </div>
       <div className="pane pane-b">
         <img
@@ -50,6 +61,7 @@ export function HeroMedia() {
           aria-hidden={modelLive || undefined}
         />
         {showModel ? <SiteFilm onLive={() => setModelLive(true)} /> : null}
+        {showModel ? <FilmGrainLayer /> : null}
         <p className="film-caption">
           {modelLive
             ? "San Kwai Street. 3D Visualisation Map © Lands Department"

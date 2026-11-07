@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CESIUM_BASE = "https://cdn.jsdelivr.net/npm/cesium@1.125.0/Build/Cesium/";
 const TILESET = "https://data.map.gov.hk/api/3d-data/3dtiles/f2/tileset.json";
@@ -52,6 +52,7 @@ type CesiumViewer = {
   entities: { add: (entity: Record<string, unknown>) => { position: unknown } };
   resize: () => void;
   destroy: () => void;
+  useDefaultRenderLoop: boolean;
 };
 
 declare global {
@@ -92,6 +93,10 @@ function smooth(t: number) {
 export function SiteFilm({ onLive }: { onLive: () => void }) {
   const host = useRef<HTMLDivElement>(null);
   const onLiveRef = useRef(onLive);
+  const pausedRef = useRef(false);
+  const holdSync = useRef<(() => void) | null>(null);
+  const [paused, setPaused] = useState(false);
+  const [ready, setReady] = useState(false);
   onLiveRef.current = onLive;
 
   useEffect(() => {
@@ -133,9 +138,21 @@ export function SiteFilm({ onLive }: { onLive: () => void }) {
         viewer.scene.screenSpaceCameraController.enableInputs = false;
 
         const target = Cesium.Cartesian3.fromDegrees(MID_LON, MID_LAT, 25);
-        const started = performance.now();
+        const clock = { origin: performance.now(), elapsed: 0 };
+        const syncHold = () => {
+          const now = performance.now();
+          const rect = frame.getBoundingClientRect();
+          const offscreen = document.hidden || rect.bottom < 80 || rect.top > window.innerHeight - 80;
+          const hold = pausedRef.current || offscreen;
+          if (hold) clock.origin = now - clock.elapsed;
+          if (viewer) viewer.useDefaultRenderLoop = !hold;
+        };
+        holdSync.current = syncHold;
+        window.addEventListener("scroll", syncHold, { passive: true });
+        document.addEventListener("visibilitychange", syncHold);
         stopRender = viewer.scene.preRender.addEventListener(() => {
-          const cycle = ((performance.now() - started) / 1000) % 18;
+          clock.elapsed = performance.now() - clock.origin;
+          const cycle = (clock.elapsed / 1000) % 18;
           const ping = cycle < 9 ? cycle / 9 : (18 - cycle) / 9;
           const t = smooth(ping);
           viewer?.camera.lookAt(
@@ -164,6 +181,7 @@ export function SiteFilm({ onLive }: { onLive: () => void }) {
         const reveal = () => {
           if (cancelled || frame.classList.contains("ready")) return;
           frame.classList.add("ready");
+          setReady(true);
           viewer?.resize();
           onLiveRef.current();
         };
@@ -225,14 +243,34 @@ export function SiteFilm({ onLive }: { onLive: () => void }) {
     return () => {
       cancelled = true;
       if (revealWatch) window.clearInterval(revealWatch);
+      if (holdSync.current) {
+        window.removeEventListener("scroll", holdSync.current);
+        document.removeEventListener("visibilitychange", holdSync.current);
+      }
       stopRender?.();
       viewer?.destroy();
     };
   }, []);
 
   return (
-    <div className="film" role="img" aria-label="A three-dimensional model of San Kwai Street, with the slope and the building site marked.">
-      <div className="film-view" ref={host} />
-    </div>
+    <>
+      <div className="film" role="img" aria-label="A three-dimensional model of San Kwai Street, with the slope and the building site marked.">
+        <div className="film-view" ref={host} />
+      </div>
+      {ready ? (
+        <button
+          className="film-pause"
+          type="button"
+          aria-pressed={paused}
+          onClick={() => {
+            pausedRef.current = !pausedRef.current;
+            setPaused(pausedRef.current);
+            holdSync.current?.();
+          }}
+        >
+          <span className="uiverse-label">{paused ? "Play" : "Pause"}</span>
+        </button>
+      ) : null}
+    </>
   );
 }

@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useId, useState } from "react";
 import { navItems, profile } from "@/content/profile";
+import AnimatedButton from "@/components/animated-button";
 
 export function SiteHeader() {
   const reduce = useReducedMotion();
@@ -56,9 +57,9 @@ export function SiteHeader() {
           ))}
         </ul>
       </nav>
-      <a className="button" href={`mailto:${profile.email}`}>
+      <AnimatedButton className="button" as="a" href={`mailto:${profile.email}`}>
         Email me
-      </a>
+      </AnimatedButton>
       <button type="button" className="text-button" onClick={toggleTheme} aria-pressed={dark}>
         {themeLabel}
       </button>
