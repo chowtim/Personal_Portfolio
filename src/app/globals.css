@@ -513,6 +513,12 @@ main p,
   max-width: 30rem;
 }
 
+.lead-stack {
+  display: grid;
+  gap: 1.1rem;
+  max-width: 30rem;
+}
+
 .lead {
   margin: 0;
   font-size: var(--step-lead);
@@ -546,10 +552,21 @@ main p,
   color: var(--muted);
 }
 
+.reg-head,
+.reg-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 10.5rem 8rem;
+  column-gap: 1.75rem;
+  align-items: baseline;
+  justify-items: start;
+}
+
 .reg-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  margin-bottom: 0.45rem;
+}
+
+.reg-head .group-label {
+  margin: 0;
 }
 
 .reg-list {
@@ -561,16 +578,13 @@ main p,
 }
 
 .reg-list li {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
   font-size: var(--step-ui);
 }
 
-.reg-list span:last-child {
+.reg-list span:nth-child(n + 2) {
   color: var(--muted);
   font-variant-numeric: tabular-nums;
-  text-align: right;
+  text-align: left;
 }
 
 .work-intro {
@@ -1408,19 +1422,15 @@ main p,
   .row i {
     grid-column: 2;
   }
-
-  .reg-list li {
-    display: grid;
-    justify-content: start;
-    gap: 0.15rem;
-  }
-
-  .reg-list span:last-child {
-    text-align: left;
-  }
 }
 
 @media (max-width: 640px) {
+  .reg-head,
+  .reg-list li {
+    grid-template-columns: 1fr;
+    row-gap: 0.15rem;
+  }
+
   .practice-grid {
     grid-template-columns: 1fr;
   }

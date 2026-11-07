@@ -17,7 +17,7 @@ export const profile = {
   phoneDisplay: "+852 9606 2698",
   phoneHref: "tel:+85296062698",
   location: "Kwai Tsing, Hong Kong",
-  notice: "Notice period 3 months, negotiable",
+  notice: "Notice period 2 months, negotiable",
   linkedIn: {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/wing-tim-chow-496489229",
@@ -32,22 +32,30 @@ export const navItems = [
   { href: "#contact", label: "Contact" },
 ] as const;
 
-export const aboutLead =
-  "Chartered civil engineer (MICE) at the Hong Kong Housing Authority. He designs and supervises site formation and excavation and lateral support for public housing developments of about HK$1 billion, leads site supervision teams, and coordinates with contractors on quality, safety and programme.";
+export const aboutLead = [
+  "Chartered civil engineer (MICE) with the Hong Kong Housing Authority since 2022.",
+  "He designs and supervises site formation, soil nailing and excavation and lateral support for public housing contracts of about HK$1 billion, including SLOPE/W and FREW checks, GEO and ICU submissions, and site supervision to Geoguides and the Code of Practice for Site Supervision.",
+] as const;
 
 export const aboutFacts = [
   { label: "Name", value: "Chow Wing Tim, Martin (周永添)" },
   { label: "Based in", value: "Kwai Tsing, N.T." },
-  { label: "Notice", value: "3 months, negotiable" },
+  { label: "Notice", value: "2 months, negotiable" },
 ] as const;
 
 export const registrations = [
-  { name: "Member, Institution of Civil Engineers", value: "93497557" },
-  { name: "BEAM Affiliate, Hong Kong Green Building Council", value: "BA2026-0035" },
-  { name: "BIM Viewer, Construction Industry Council", value: "" },
+  { name: "Member, Institution of Civil Engineers", value: "93497557", date: "March 2026" },
+  {
+    name: "Completed HKIE Scheme 'A' training in Geotechnical Engineering",
+    value: "",
+    date: "August 2025",
+  },
+  { name: "BEAM Affiliate, Hong Kong Green Building Council", value: "BA2026-0035", date: "April 2026" },
+  { name: "BIM Viewer, Construction Industry Council", value: "", date: "December 2024" },
   {
     name: "MiC installation quality assurance, site inspection and supervision, Construction Industry Council",
     value: "",
+    date: "June 2026",
   },
 ] as const;
 
@@ -159,11 +167,11 @@ export const projects: Project[] = [
     },
     paragraphs: [
       "Contract sum about HK$0.9 billion. One domestic block of about 40 storeys on a 2-storey podium, on a site of about 6,500 m².",
-      "Prepared the geotechnical design for slope 7SW-C/CR393: the crest footpath structure RW1, compensation soil nails and slope drainage, using SLOPE/W. The design meets factors of safety of 1.4 and 1.1 under the 10-year groundwater condition and the predicted worst groundwater table.",
-      "Used BIM to set out the nails and avoid clashes with the Footbridge B minipiles.",
-      "Led Assistant Inspectors of Works in supervising 61 working soil nails, 6 to 16 m long, in T25 and T40 bar, including setting-out, drilling, grouting, nail heads, pull-out tests and time-domain reflectometry, to the approved drawings, Geoguide 7 and the Code of Practice for Site Supervision.",
-      "Prepared the design amendment for site issues and instructed Technical Officers on drawing revisions for ICU and GEO amendments. Reviewed the contractor’s method statements, master programme and submissions.",
-      "Coordinated with the contractor, the survey team and the Project Geotechnical Engineer on clashes, progress and site safety.",
+      "Checked the SLOPE/W design for registered slope 7SW-C/CR393, covering footpath structure RW1, compensation soil nails and slope drainage, and accepted it at factors of safety of 1.4 under the 10-year groundwater condition and 1.1 under the predicted worst groundwater table.",
+      "Set out the soil nails in BIM against the Footbridge B minipiles and checked bearing and inclination to avoid a clash before drilling.",
+      "Led Assistant Inspectors of Works on 61 working soil nails, 6 to 16 m long, in T25 and T40 bar, covering setting-out, drilling, grouting and nail heads, and accepted pull-out tests and time-domain reflectometry results against Geoguide 7 and the Code of Practice for Site Supervision.",
+      "Resolved site-driven design amendments with the Project Geotechnical Engineer and instructed Technical Officers on the drawing revisions submitted to the ICU and GEO.",
+      "Reviewed the contractor’s method statements and master programme, including completion of pull-out tests before working nails, and raised clashes, progress and safety items with the contractor and the survey team.",
     ],
     strata: true,
   },
@@ -179,8 +187,8 @@ export const projects: Project[] = [
     minHeight: "60svh",
     paragraphs: [
       "Contract sum about HK$1 billion. A 24-storey domestic block on a 5-storey podium, on a flat site of about 1,700 m² at the junction of Lai Chi Kok Road and Yen Chow Street.",
-      "Assessed the excavation and lateral support for the pile caps: FSP VI sheet piles, up to three strut levels and a local 30° open cut. Excavation is generally 4.0 m and locally 6.6 m. The check used FREW, SEEP/W and SLOPE/W, including toe and hydraulic stability.",
-      "Accounted for settlement of the Grade II historic Sham Shui Po Police Station at 37 Yen Chow Street, on shallow foundations, the Kiu Kiang Street Substation, and the adjoining six-lane roads, with pre-grouting and a pumping test before excavation.",
+      "Checked the pile-cap excavation and lateral support in FREW, SEEP/W and SLOPE/W for FSP VI sheet piles, up to three strut levels and a local 30° cut, with excavation of 4.0 m generally and 6.6 m locally, including toe and hydraulic stability.",
+      "Included pre-grouting and a pumping test before excavation because 37 Yen Chow Street is on shallow foundations, beside the Kiu Kiang Street Substation and six-lane roads. Assessed the Grade II Sham Shui Po Police Station as a sensitive receiver about 30 m away.",
     ],
     figures: [
       {
@@ -330,28 +338,35 @@ export const backgroundGroups: { label: string; rows: RecordRow[] }[] = [
     label: "Professional Qualification",
     rows: [
       {
-        year: "2026",
+        year: "Mar 2026",
         title: "Member (MICE)",
         body: "Institution of Civil Engineers",
         detail: "93497557",
         showYear: true,
       },
       {
-        year: "2026",
+        year: "Aug 2025",
+        title: "Completed HKIE Scheme 'A' training in Geotechnical Engineering",
+        body: "",
+        detail: "",
+        showYear: true,
+      },
+      {
+        year: "Apr 2026",
         title: "BEAM Affiliate",
         body: "Hong Kong Green Building Council",
         detail: "BA2026-0035",
         showYear: true,
       },
       {
-        year: "2024",
+        year: "Dec 2024",
         title: "BIM Viewer",
         body: "Construction Industry Council",
         detail: "",
         showYear: true,
       },
       {
-        year: "2026",
+        year: "Jun 2026",
         title: "Certificate in MiC Installation Quality Assurance, Site Inspection and Supervision",
         body: "Hong Kong Institute of Construction",
         detail: "",
